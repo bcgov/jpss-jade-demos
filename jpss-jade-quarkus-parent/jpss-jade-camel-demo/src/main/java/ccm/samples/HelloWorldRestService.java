@@ -9,11 +9,12 @@ public class HelloWorldRestService extends RouteBuilder {
 	@Override
 	public void configure() throws Exception {
 		restConfiguration()
-		.contextPath("{{context-path}}").apiContextPath("{{api-path}}")
-        .apiProperty("api.title", "{{api-title}}")
-        .apiProperty("api.version", "{{api-version}}")
-        .apiProperty("cors", "true") //FIXME mcostell make this configuratble 
-        .apiContextRouteId("api")
+		.contextPath("{{context-path}}")
+		//.apiContextPath("{{api-path}}")
+        //.apiProperty("api.title", "{{api-title}}")
+        //.apiProperty("api.version", "{{api-version}}")
+        //.apiProperty("cors", "true") //FIXME mcostell make this configuratble 
+        //.apiContextRouteId("api")
         .port("{{port}}");
 	/**
 	 * @author mcostell rest implementation 
@@ -23,7 +24,10 @@ public class HelloWorldRestService extends RouteBuilder {
 				.id("rest-hello-world-by-lang")
 				.description("Hello World By Language")
 				.produces(MediaType.APPLICATION_JSON)
-				.to("direct:performTranslateLang");
+				.to("direct:performTranslateLang")
+			.get("/ping/{ping}")
+				.id("something")
+				.to("direct:pong");
 	
 	
 	from("direct:performTranslateLang")
@@ -41,6 +45,10 @@ public class HelloWorldRestService extends RouteBuilder {
 			.setBody(simple("Unsupported"))
 		.marshal().json(Boolean.TRUE); 
 	
+	from("direct:pong")
+		.log("ping pong")
+		.setBody(simple("pong"))
+		.marshal().json(Boolean.TRUE);
 	
 }
 
