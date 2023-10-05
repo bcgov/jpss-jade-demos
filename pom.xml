@@ -9,7 +9,7 @@
 	<name>jpss-jade-demos</name>
 	<description>jpss-jade-demos parent</description>
 	<properties>
-		<camel-quarkus.version>>3.4.0</camel-quarkus.version>
+		<camel-quarkus.version>3.4.0</camel-quarkus.version>
 		<quarkus.version>3.4.0</quarkus.version>
 		<jacoco.version>0.8.6</jacoco.version>
 		<maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
